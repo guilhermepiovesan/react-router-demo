@@ -11,6 +11,14 @@ class App extends Component {
             <IndexRoute component={Localizacao} />
             <Route path='filiais' component={Filiais} />
           </Route>
+          <Route path='contato' component={Contato}>
+            <IndexRoute component={Localizacao} />
+            <Route path='filiais' component={Filiais} />
+          </Route>
+          <Route path='sobre' component={Sobre} />
+          <Route path='namedComponent' component={NamedComponents}>
+            <IndexRoute components={{ title: Title, subTitle: SubTitle }} />
+          </Route>
           <Route path='*' component={NotFound} />
         </Route>
       </Router>
@@ -27,6 +35,7 @@ const Contato = (props) => (
     {props.children}
   </div>
 )
+const Sobre = () => (<h1>Sobre nós</h1>)
 const NotFound = () => (<h1>Erro 404 - A página não foi encontrada!</h1>)
 
 const Localizacao = () => (<h3>Localização</h3>)
@@ -43,8 +52,23 @@ const Menu = () => (
   <div>
     <IndexLink to='/' activeClassName='active'>Página Inicial</IndexLink>&nbsp;
     <IndexLink to='/contato' activeClassName='active'>Contato</IndexLink>&nbsp;
-    <IndexLink to='/sobre' activeClassName='active'>Sobre</IndexLink>
+    <IndexLink to='/sobre' activeClassName='active'>Sobre</IndexLink>&nbsp;
+    <IndexLink to='/namedComponent' activeClassName='active'>Named Components</IndexLink>
   </div>
+)
+
+const NamedComponents = (props) => (
+  <div>
+    {props.title}<br />
+    {props.subTitle}
+  </div>
+)
+
+const Title = () => (
+  <h1>Hello from Title Component</h1>
+)
+const SubTitle = () => (
+  <h1>Hello from SubTitle Component</h1>
 )
 
 export default App
