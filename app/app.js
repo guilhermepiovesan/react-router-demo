@@ -14,6 +14,7 @@ class App extends Component {
           <Route path='contato' component={Contato}>
             <IndexRoute component={Localizacao} />
             <Route path='filiais' component={Filiais} />
+            <Route path='query' component={Query} />
           </Route>
           <Route path='sobre(/:name)' component={Sobre} />
           <Route path='namedComponent' component={NamedComponents}>
@@ -30,7 +31,8 @@ const Home = () => <h1>Página Inicial</h1>
 const Contato = (props) => (
   <div>
     <Link to ='/contato' onlyActiveOnIndex activeStyle={{color:'red'}}>Localização</Link>&nbsp;
-    <Link to ='/contato/filiais' activeStyle={{color:'red'}}>Filiais</Link>
+    <Link to ='/contato/filiais' activeStyle={{color:'red'}}>Filiais</Link>&nbsp;
+    <Link activeClassName='active' to={{ pathname: '/contato/query', query: { message: 'Hello from Route Query' } }}>Route Query</Link>
     <h1>Contato</h1>
     {props.children}
   </div>
@@ -75,6 +77,10 @@ const Title = () => (
 )
 const SubTitle = () => (
   <h1>Hello from SubTitle Component</h1>
+)
+
+const Query = (props) => (
+  <h2>{props.location.query.message}</h2>
 )
 
 export default App
