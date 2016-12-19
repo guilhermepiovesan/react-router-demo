@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import { Router, Route, Link, IndexLink, IndexRoute, hashHistory, browserHistory } from 'react-router'
 
 class App extends Component {
   render() {
@@ -21,8 +21,8 @@ class App extends Component {
 const Home = () => <h1>Página Inicial</h1>
 const Contato = (props) => (
   <div>
-    <Link to ='/contato'>Localização</Link>&nbsp;
-    <Link to ='/contato/filiais'>Filiais</Link>
+    <Link to ='/contato' onlyActiveOnIndex activeStyle={{color:'red'}}>Localização</Link>&nbsp;
+    <Link to ='/contato/filiais' activeStyle={{color:'red'}}>Filiais</Link>
     <h1>Contato</h1>
     {props.children}
   </div>
@@ -41,8 +41,9 @@ const Container = (props) => (
 
 const Menu = () => (
   <div>
-    <Link to='/'>Página Inicial</Link>&nbsp;
-    <Link to='/contato'>Contato</Link>
+    <IndexLink to='/' activeClassName='active'>Página Inicial</IndexLink>&nbsp;
+    <IndexLink to='/contato' activeClassName='active'>Contato</IndexLink>&nbsp;
+    <IndexLink to='/sobre' activeClassName='active'>Sobre</IndexLink>
   </div>
 )
 
