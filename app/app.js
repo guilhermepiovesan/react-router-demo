@@ -15,7 +15,7 @@ class App extends Component {
             <IndexRoute component={Localizacao} />
             <Route path='filiais' component={Filiais} />
           </Route>
-          <Route path='sobre' component={Sobre} />
+          <Route path='sobre(/:name)' component={Sobre} />
           <Route path='namedComponent' component={NamedComponents}>
             <IndexRoute components={{ title: Title, subTitle: SubTitle }} />
           </Route>
@@ -35,7 +35,13 @@ const Contato = (props) => (
     {props.children}
   </div>
 )
-const Sobre = () => (<h1>Sobre nós</h1>)
+const Sobre = (props) => (
+  <div>
+    <h1>Sobre nós</h1>
+    <Link to ='/sobre/Guilherme' onlyActiveOnIndex activeStyle={{color:'red'}}>Guilherme</Link>
+    { props.params.name && <h2>Seja bem vindo, {props.params.name}</h2>}
+  </div>
+)
 const NotFound = () => (<h1>Erro 404 - A página não foi encontrada!</h1>)
 
 const Localizacao = () => (<h3>Localização</h3>)
